@@ -1,0 +1,7 @@
+.country {
+    @apply p-2 mb-2 border rounded-md;
+}
+
+.country-name {
+    @apply text-lg font-medium mb-2;
+}
