@@ -3,5 +3,5 @@
 }
 
 .country-name {
-    @apply text-lg font-medium mb-2;
+    @apply text-lg font-thin mb-2;
 }
