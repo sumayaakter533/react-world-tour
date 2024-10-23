@@ -1,7 +1,23 @@
 .country {
-    @apply p-2 mb-2 border rounded-md;
+    @apply p-2 border border-blue-950 rounded-md flex flex-col gap-2;
 }
 
 .country-name {
-    @apply text-lg font-thin mb-2;
+    @apply font-thin;
 }
+
+.country img {
+    @apply w-full h-36;
+}
+
+.visited-bg {
+    background-color: rgba(0, 0, 255, 0.2);
+}
+
+/* .visited {
+    background-color: pink;
+}
+
+.not-visited {
+    background-color: red;
+} */

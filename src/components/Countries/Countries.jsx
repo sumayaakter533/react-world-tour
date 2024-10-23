@@ -8,6 +8,7 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import Country from "../Country/Country"
+import "./Countries.css"
 
 /**
  *  এখানে সর্বপ্রথম `Countries` নামক component বানানো হয়েছে।
@@ -37,8 +38,8 @@ const Countries = () => {
 
     // SECTION: UI render করা হচ্ছে।
     return (
-        <div className='text-left w-3/5 m-auto p-6'>
-            <h3 className='text-2xl'>
+        <div className='country-container'>
+            <h3 className='text-2xl col-span-3'>
                 No. Total Countries: {countries.length}{" "}
                 {/* STUB: দেশের মোট সংখ্যা প্রদর্শন করা হচ্ছে */}
             </h3>
