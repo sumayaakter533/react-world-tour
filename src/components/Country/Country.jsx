@@ -10,8 +10,8 @@ import PropTypes from "prop-types"
 
 // এখানে `Country` একটি functional component হিসেবে সংজ্ঞায়িত করা হয়েছে, যা একটি `country` প্রপ গ্রহণ করে। এই country অবজেক্টটি দেশের তথ্য ধারণ করে।
 const Country = ({ country }) => {
-    // TODO: country অবজেক্ট থেকে name এবং flags নামক প্রপার্টিগুলো বের করা হচ্ছে।
-    const { name, flags } = country
+    // TODO: country অবজেক্ট [prop] থেকে name এবং flags নামক প্রপার্টিগুলো বের করা হচ্ছে।
+    const { name, flags, population, area } = country
 
     // SECTION: component এর UI render করা হচ্ছে
     return (
@@ -30,6 +30,9 @@ const Country = ({ country }) => {
             </p>
             <img className='w-40 h-30' src={flags.png} alt='img pay nai' />
             {/* FIXME: দেশের পতাকা প্রদর্শন করা হচ্ছে, বিকল্প alt টেক্সট সহ */}
+
+            <p>Population: {population}</p>
+            <p>Area: {area}</p>
         </div>
     )
 }
@@ -42,7 +45,9 @@ Country.propTypes = {
         }).isRequired,
         flags: PropTypes.shape({
             png: PropTypes.string.isRequired // ANCHOR: country.flags.png কে প্রয়োজনীয় string হিসেবে যাচাইকরণ করা হচ্ছে
-        }).isRequired
+        }).isRequired,
+        population: PropTypes.number.isRequired, // FIX: population কে সরাসরি number হিসেবে যাচাইকরণ করা হচ্ছে
+        area: PropTypes.number.isRequired // FIX: area কে সরাসরি number হিসেবে যাচাইকরণ করা হচ্ছে
     }).isRequired // REVIEW: country অবজেক্টকে প্রয়োজনীয় হিসেবে যাচাইকরণ করা হচ্ছে
 }
 
