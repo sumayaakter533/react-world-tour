@@ -35,6 +35,7 @@ export default [
             ],
             "spaced-comment": "off",
             "no-warning-comments": "off"
+            // 'react/prop-types': 'off'
         }
     }
 ]
