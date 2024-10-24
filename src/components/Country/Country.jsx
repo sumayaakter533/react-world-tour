@@ -11,7 +11,7 @@ import "./Country.css"
 import PropTypes from "prop-types"
 
 // এখানে `Country` একটি functional component হিসেবে সংজ্ঞায়িত করা হয়েছে, যা একটি `country` প্রপ গ্রহণ করে। এই country অবজেক্টটি দেশের তথ্য ধারণ করে।
-const Country = ({ country }) => {
+const Country = ({ country, handleVisitedCountries, handleVisitedFlags }) => {
     // TODO: country অবজেক্ট [prop] থেকে name, flags, population, area, এবং cca3 প্রপার্টিগুলো বের করা হচ্ছে।
     const { name, flags, population, area, cca3 } = country
 
@@ -21,6 +21,14 @@ const Country = ({ country }) => {
         setVisited(true) // 'visited' স্টেট true করা হচ্ছে
         // setVisited(!visited)  // বিকল্প হিসেবে স্টেট পরিবর্তন করা হতে পারে পূর্বের বিপরীতে
     }
+
+    // console.log(handleVisitedCountries)
+
+    /*
+    const passWithParams = () => {
+        handleVisitedCountries(country)
+    }
+    */
 
     // SECTION: component এর UI render করা হচ্ছে
     return (
@@ -62,6 +70,12 @@ const Country = ({ country }) => {
             </button>
             {/* {visited && "The country is visited"} */}
             {/* {visited ? "Visited" : "Not visited"} */}
+
+            {/* TODO: mark visited btn */}
+            {/* <button onClick={passWithParams}>Mark Visited</button> */}
+            <button onClick={() => handleVisitedCountries(country)}>
+                Mark Visited
+            </button>
         </div>
     )
 }

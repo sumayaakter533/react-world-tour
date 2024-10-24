@@ -5,10 +5,10 @@
  *@return JSX component যা দেশের তালিকা প্রদর্শন করে
  *=============================================**/
 
-import { useEffect } from "react"
-import { useState } from "react"
-import Country from "../Country/Country"
-import "./Countries.css"
+import { useEffect } from "react";
+import { useState } from "react";
+import Country from "../Country/Country";
+import "./Countries.css";
 
 /**
  *  এখানে সর্বপ্রথম `Countries` নামক component বানানো হয়েছে।
@@ -16,7 +16,7 @@ import "./Countries.css"
  **/
 const Countries = () => {
     // TODO: দেশগুলোর তথ্য সংরক্ষণ করার জন্য state আরম্ভ করা হয়েছে।
-    const [countries, setCountries] = useState([])
+    const [countries, setCountries] = useState([]);
     /**
      *  এখানে `countries` এবং `setCountries` নামে দুটি variable তৈরি করা হয়েছে।
      *  `useState([])` একটি React Hook যা state আরম্ভ করতে ব্যবহৃত হয়।
@@ -29,12 +29,29 @@ const Countries = () => {
      *  যখন আমরা API থেকে নতুন তথ্য পাই, তখন এই function এর মাধ্যমে `countries` state-টি update করা হয়। সংক্ষেপে, এই অংশটি মূলত দেশের তালিকা রাখার জন্য state আরম্ভ করে, এবং পরবর্তীতে সেই state পরিবর্তন করার জন্য একটি function প্রদান করে।
      **/
 
+    // TODO:
+    const [visitedCountries, setVisitedCountries] = useState([]);
+
+    // TODO:
+    const [visitedFlags, setVisitedFlags] = useState([]);
+
     // SECTION: API থেকে দেশের তথ্য সংগ্রহ করা হচ্ছে, একবার component টি render হলে।
     useEffect(() => {
         fetch("https://restcountries.com/v3.1/all")
             .then((res) => res.json()) // REVIEW: response কে JSON ফরম্যাটে রূপান্তর করা হচ্ছে।
-            .then((data) => setCountries(data)) // NOTE: API থেকে আনা তথ্য state এ সংরক্ষণ করা হচ্ছে।
-    }, []) // FIXME: খালি dependency array দেয়া হয়েছে যাতে effect টি একবারই চলে।
+            .then((data) => setCountries(data)); // NOTE: API থেকে আনা তথ্য state এ সংরক্ষণ করা হচ্ছে।
+    }, []); // FIXME: খালি dependency array দেয়া হয়েছে যাতে effect টি একবারই চলে।
+
+    // TODO:
+    const handleVisitedCountries = (country) => {
+        const newVisitedCountries = [...visitedCountries, country];
+        setVisitedCountries(newVisitedCountries);
+    };
+
+    // TODO:
+    const handleVisitedFlags = (flag) => {
+        console.log("flag adding");
+    };
 
     // SECTION: UI render করা হচ্ছে।
     return (
@@ -44,12 +61,33 @@ const Countries = () => {
                 {/* STUB: দেশের মোট সংখ্যা প্রদর্শন করা হচ্ছে */}
             </h3>
 
+            {/* SECTION: visited countries  */}
+            <div className='col-span-3'>
+                <h5>Visited countries: {visitedCountries.length}</h5>
+                <div className='grid grid-cols-2 gap-4'>
+                    {visitedCountries.map((country) => (
+                        <div key={country.cca3}>
+                            <li>{country.name.common}</li>
+                            <img
+                                className='w-full h-40'
+                                src={country.flags.png}
+                                alt=''
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* SECTION: display countries  */}
             {/* যখন countries array এর প্রতিটি উপাদানকে map() করা হবে, আমরা প্রতিটি উপাদানকে যেকোনো একটি নাম দিতে পারি। এখানে আমরা প্রতিটি উপাদানের নাম দিয়েছি `countryInCountries` */}
             {countries.map((countryInCountries) => (
                 // এখন countryInCountries এর তথ্যগুলো "Country" component এ পাঠানো হবে।
                 <Country
                     key={countryInCountries.cca3}
-                    country={countryInCountries}></Country> // ANCHOR: প্রতিটি দেশকে iterate করে Country component এ প্রদর্শন করা হচ্ছে।
+                    country={countryInCountries}
+                    handleVisitedCountries={handleVisitedCountries}
+                    handleVisitedFlags={handleVisitedFlags}></Country>
+                // ANCHOR: প্রতিটি দেশকে iterate করে Country component এ প্রদর্শন করা হচ্ছে।
                 /**
                  *  TODO: code explanation
                  *
@@ -64,7 +102,7 @@ const Countries = () => {
                  **/
             ))}
         </div>
-    )
-}
+    );
+};
 
-export default Countries
+export default Countries;
